@@ -1,23 +1,23 @@
-# train_tessarct_Guide
-Hier are the main points how to train tesaract 5
+# Train Tesseract Guide
+Here are the main points on how to train Tesseract 5:
 #######################################################
-install linux (ubunto as subsystem on windows 10) 
+Install Linux (Ubuntu as a subsystem on Windows 10)
 #######################################################
-1- go to go to windowsfeature aktivieren oder deaktiveren 
-2-choose windows subsystem for linux 
-3- ok and restart
-4- install ubuto (as app ) from windows store
-5- choose user name and psw
-6-cd /mnt/d "any/dir/you/want/to/accsses"
+1- Go to "Windows Features aktivieren oder deaktivieren".
+2- Choose "Windows Subsystem for Linux".
+3- Click "OK" and restart.
+4- Install Ubuntu (as an app) from the Windows Store.
+5- Choose a username and password.
+6- Use the command `cd /mnt/d "any/dir/you/want/to/access"`.
+
 #########################################################
-fine tunning tessarct
+Fine-tuning Tesseract
 #########################################################
-1- install the tesstrain fro this repo:"https://github.com/tesseract-ocr/tesstrain?tab=readme-ov-file#windows"
-using git command or just download as zip file then unzip
-2- move to the tesstrain folder dir for example:"cd "/mnt/d/future link/AljalaliAli/tesseract_fine_tunning/tesstrain-main"
-3- creat data dir in tesstrain-main
-4-then creat mde-ground-truth dir in data dir (mde for the finne tunnied moudel name)
-5-inside the ground-truth add the images and the truth texts for example: img_1.tff, img_1.gt.txt,img_2.tff, img_2.gt.txt ....... img_n.tff, img_n.gt.txt (text to describe each image the text must have the same img name )
-6-make tesseract-langdata
-7- choose the start model and start thetraining it will creat ox file and lstm files and every thing:
- make training MODEL_NAME=mde  START_MODEL=eng TESSDATA="/mnt/d/future\ link/AljalaliAli/train_tessarct/tessdata_best-main"
+1- Install the `tesstrain` from this repository: "https://github.com/tesseract-ocr/tesstrain?tab=readme-ov-file#windows". You can do this using the git command or just download it as a zip file and then unzip it.
+2- Move to the `tesstrain` folder directory. For example: `cd "/mnt/d/future link/AljalaliAli/tesseract_fine_tuning/tesstrain-main"`.
+3- Create a `data` directory in `tesstrain-main`.
+4- Then create a `mde-ground-truth` directory in the `data` directory (mde for the fine-tuned model name).
+5- Inside the `ground-truth` directory, add the images and the truth texts. For example: `img_1.tff`, `img_1.gt.txt`, `img_2.tff`, `img_2.gt.txt` ....... `img_n.tff`, `img_n.gt.txt`. (The text to describe each image must have the same name as the image.)
+6- Make `tesseract-langdata`.
+7- Choose the start model and start the training. It will create `.box` files, `.lstm` files, and everything else:
+ `make training MODEL_NAME=mde START_MODEL=eng TESSDATA="/mnt/d/future\ link/AljalaliAli/train_tessarct/tessdata_best-main"`.
