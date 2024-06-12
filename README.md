@@ -18,6 +18,6 @@ Fine-tuning Tesseract
 3- Create a `data` directory in `tesstrain-main`.
 4- Then create a `mde-ground-truth` directory in the `data` directory (mde for the fine-tuned model name).
 5- Inside the `ground-truth` directory, add the images and the truth texts. For example: `img_1.tff`, `img_1.gt.txt`, `img_2.tff`, `img_2.gt.txt` ....... `img_n.tff`, `img_n.gt.txt`. (The text to describe each image must have the same name as the image.)
-6- Make `tesseract-langdata`.
+6- make tesseract-langdata
 7- Choose the start model and start the training. It will create `.box` files, `.lstm` files, and everything else:
  `make training MODEL_NAME=mde START_MODEL=eng TESSDATA="/mnt/d/future\ link/AljalaliAli/train_tessarct/tessdata_best-main"`.
