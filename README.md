@@ -15,6 +15,8 @@ Install Linux (Ubuntu as a subsystem on Windows 10)
 #########################################################
 Fine-tuning Tesseract
 #########################################################
+install rererment:
+pip3 install Pillow
 
 1- Install the tesstrain from this dir in Nextcloud, or from github repository:
 "https://github.com/tesseract-ocr/tesstrain?tab=readme-ov-file#windows".
