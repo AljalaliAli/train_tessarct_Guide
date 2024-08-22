@@ -1,55 +1,95 @@
-Train Tesseract Guide
 
-Here are the main points on how to train Tesseract 5:
-#######################################################
-Install Linux (Ubuntu as a subsystem on Windows 10)
-#######################################################
+# Train Tesseract 5 Guide
 
-1- Go to "Windows Features aktivieren oder deaktivieren".
-2- Choose "Windows Subsystem for Linux".
-3- Click "OK" and restart.
-4- Install Ubuntu (as an app) from the Windows Store.
-5- Choose a username and password.
-6- Use the command cd /mnt/d "any/dir/you/want/to/access".
+This guide provides step-by-step instructions on how to train Tesseract 5, including setting up the necessary environment and fine-tuning Tesseract.
 
-#########################################################
-Fine-tuning Tesseract
-#########################################################
-install rererment:
+## 1. Install Linux (Ubuntu as a Subsystem on Windows 10)
+
+Follow these steps to install Ubuntu as a subsystem on Windows 10:
+
+1. Open **Windows Features**.
+2. Enable **Windows Subsystem for Linux**.
+3. Click **OK** and restart your computer.
+4. Install **Ubuntu** from the Microsoft Store.
+5. Set up a username and password when prompted.
+6. Use the following command to access any directory:
+
+   ```bash
+   cd /mnt/d/any/dir/you/want/to/access
+   ```
+
+## 2. Fine-tuning Tesseract
+
+### 2.1 Install Requirements
+
+First, install the required Python package:
+
+```bash
 pip3 install Pillow
+```
 
-1- Install the tesstrain from this dir in Nextcloud, or from github repository:
-"https://github.com/tesseract-ocr/tesstrain?tab=readme-ov-file#windows".
-You can do this using the git command or just download it as a zip file and then unzip it.
+### 2.2 Download and Set Up Tesstrain
 
-2- Move to the tesstrain folder directory. (python project from tessarct)
-For example:
+1. Clone the `tesstrain` repository or download it as a zip file from [GitHub](https://github.com/tesseract-ocr/tesstrain?tab=readme-ov-file#windows).
 
-cd "/mnt/d/future link/AljalaliAli/OCR Tesseract Feintuning/2- tesstrain/"
+   ```bash
+   git clone https://github.com/tesseract-ocr/tesstrain.git
+   ```
 
+2. Navigate to the `tesstrain` directory. For example:
 
-3- Create a data directory in tesstrain-main.
+   ```bash
+   cd "/mnt/d/future link/AljalaliAli/OCR Tesseract Feintuning/2- tesstrain/"
+   ```
 
-4- Then create a mde-ground-truth directory in the data directory (mde for the fine-tuned model name)
+3. Create a `data` directory inside the `tesstrain-main` folder:
 
-Inside the ground-truth directory, add the images and the truth   texts.
-For example: img_1.tff, img_1.gt.txt, img_2.tff,
-img_2.gt.txt ....... img_n.tff, img_n.gt.txt. (The text to describe each image must have the same name as the image.)
-.(done from another sw! see creat_new_font_grou nd_truth and creat_ground_truth)
+   ```bash
+   mkdir data
+   ```
 
-5- make langdata
+4. Inside the `data` directory, create a folder named after your fine-tuned model (e.g., `mde`), and then create a `ground-truth` directory within it. Add your images and corresponding ground truth text files into this directory.
 
-make 'tesseract-langdata'
+   Example structure:
 
-6- Choose the start model and start the training. It will create .box files, .lstm files, and everything else:
+   ```
+   data/
+   ├── mde/
+       └── ground-truth/
+           ├── img_1.tif
+           ├── img_1.gt.txt
+           ├── img_2.tif
+           ├── img_2.gt.txt
+           └── ...
+   ```
 
+   Ensure that each image file (`.tif`) has a corresponding text file (`.gt.txt`) with the same name.
+
+### 2.3 Prepare Language Data
+
+Run the following command to create the necessary language data:
+
+```bash
+make tesseract-langdata
+```
+
+### 2.4 Start the Training Process
+
+Choose the start model and begin the training process. This will generate `.box` files, `.lstm` files, and other necessary files.
+
+Example commands:
+
+```bash
 make training MODEL_NAME=mde START_MODEL=eng TESSDATA="/mnt/d/future\ link/AljalaliAli/tessdata_best-main"
+```
 
-another example:
+Other examples:
+
+```bash
 make training MODEL_NAME=abc START_MODEL=eng TESSDATA="tessdata_best-main"
 
 make training MODEL_NAME=xya START_MODEL=eng TESSDATA="tessdata_best-main"
-another example:
-make training MODEL_NAME=ftk START_MODEL=dig TESSDATA="/mnt/d/future\ link/AljalaliAli/DataGeneration/DataGeneration/Tesseract_5/tessdata"
 
+make training MODEL_NAME=ftk START_MODEL=dig TESSDATA="/mnt/d/future\ link/AljalaliAli/DataGeneration/DataGeneration/Tesseract_5/tessdata"
+```
 
